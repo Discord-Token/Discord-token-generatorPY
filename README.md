@@ -23,7 +23,7 @@
     <br />
     <a href="https://github.com/Discord-Token/Discord-token-generatorPY/issues">Report Bug</a>
     ·
-    <a href="https://github.com/Discord-Token/Discord-token-generatorPY/issues">Request Feature</a>
+    <a href="https://discord.gg/V46vTVcAYC">Discord server</a>
   </p>
 </div>
   
