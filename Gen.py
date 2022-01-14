@@ -93,7 +93,7 @@ def generateToken():
 
 
                         email = "".join(choice("abcdefghijklmnopqrstuvwxyz") for i in range(10))
-                        email += "@sexyoxi.com"
+                        email += "@blackmanhidingfromaperson.com"
                         a=random.choice(os.listdir(folder))
                         avatar = folder+'\\'+a
                         imgg = base64.b64encode(open(f"{avatar}", "rb").read()).decode('ascii')
