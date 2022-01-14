@@ -1,4 +1,4 @@
 colorama
-concurrent.futures
+futures
 httpx
 websocket-client
