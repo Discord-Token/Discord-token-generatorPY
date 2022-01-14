@@ -44,7 +44,7 @@
 * pip install -r requirements.txt
 * Buy anticaptcha balance from https://anti-captcha.com/ and put your key inside gen.py (line 14)
 * Buy proxies from https://proxiware.com/ and put your proxies in proxies.txt
-* Put avatars in the avatars folder.
+* Maka a data folder inside the same directory as gen, make a avatars folder inside it and put pfps in there (dm me on tele for a zip of images)
 * Run the python file :)
 
 ---------------------------------------
