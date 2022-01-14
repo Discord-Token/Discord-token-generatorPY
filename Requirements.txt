@@ -1,8 +1,6 @@
-os
 httpx
 base64
 colorama
-os
 random
 threading
 time
