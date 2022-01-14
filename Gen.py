@@ -15,7 +15,7 @@ init(convert=True)
 folder=r"Data/Avatars"
 captchaApi = "anti-captcha.com" # 2captcha.com anti-captcha.com capmonster.cloud
 
-captchaKey = "ce9f565677a283b82d69a31045bfeb48"
+captchaKey = "KEY"
 genStartTime = time()
 generatedTokens = 0
 failedTokens = 0
