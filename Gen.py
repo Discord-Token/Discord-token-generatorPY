@@ -2,7 +2,6 @@ import os
 import httpx
 from base64 import b64encode
 from colorama import init, Fore, Style
-from os import system
 from random import choice
 from threading import RLock, Thread
 from time import time, sleep
@@ -13,7 +12,7 @@ import json
 import random
 init(convert=True)
 folder=r"Data/Avatars"
-captchaApi = "anti-captcha.com" # 2captcha.com anti-captcha.com capmonster.cloud
+captchaApi = "anti-captcha.com" # 2captcha.com anti-captcha.com capmonster.cloud (use anti captcha, other services are patched)
 
 captchaKey = "KEY"
 genStartTime = time()
@@ -42,6 +41,7 @@ def generateToken():
     global failedTokens
     global solved
     global erroredTokens
+    global regReq
     try:
         system(f"title Token Generator V1ㅣ{round(generatedTokens / ((time() - genStartTime) / 60))}/mㅣSuccess {generatedTokens}ㅣFailed {failedTokens}ㅣError {erroredTokens} ㅣ Solved {solved}")
 
@@ -52,15 +52,7 @@ def generateToken():
         with httpx.Client(cookies={"locale": "en-US"}, headers={"Accept": "*/*", "Accept-Language": "en-US", "Connection": "keep-alive", "Content-Type": "application/json", "DNT": "1", "Host": "discord.com", "Referer": "https://discord.com/", "Sec-Fetch-Dest": "empty", "Sec-Fetch-Mode": "cors", "Sec-Fetch-Site": "same-origin", "TE": "trailers", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0", "X-Track": "eyJvcyI6IldpbmRvd3MiLCJicm93c2VyIjoiRmlyZWZveCIsImRldmljZSI6IiIsInN5c3RlbV9sb2NhbGUiOiJlbi1VUyIsImJyb3dzZXJfdXNlcl9hZ2VudCI6Ik1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDEwLjA7IFdpbjY0OyB4NjQ7IHJ2Ojk0LjApIEdlY2tvLzIwMTAwMTAxIEZpcmVmb3gvOTQuMCIsImJyb3dzZXJfdmVyc2lvbiI6Ijk0LjAiLCJvc192ZXJzaW9uIjoiMTAiLCJyZWZlcnJlciI6IiIsInJlZmVycmluZ19kb21haW4iOiIiLCJyZWZlcnJlcl9jdXJyZW50IjoiIiwicmVmZXJyaW5nX2RvbWFpbl9jdXJyZW50IjoiIiwicmVsZWFzZV9jaGFubmVsIjoic3RhYmxlIiwiY2xpZW50X2J1aWxkX251bWJlciI6OTk5OSwiY2xpZW50X2V2ZW50X3NvdXJjZSI6bnVsbH0="}, proxies=proxy) as client:
             client.headers["X-Fingerprint"] = client.get("https://discord.com/api/v9/experiments", timeout=30).json().get("fingerprint")
             client.headers["Origin"] = "https://discord.com"
-
-           
-
-
-
-
             taskId = ""
-
-
             taskId = httpx.post(f"https://api.{captchaApi}/createTask", json={"clientKey": captchaKey, "task": {"type": "HCaptchaTaskProxyless", "websiteURL": "https://discord.com/", "websiteKey": "f5561ba9-8f1e-40ca-9b5b-a0b3f719ef34", "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:95.0) Gecko/20100101 Firefox/95.0"}}, timeout=30).json()
             if taskId.get("errorId") > 0:
                 s_print(f"{Fore.RED}{Style.BRIGHT}[-] createTask - {taskId.get('errorDescription')}!{Style.RESET_ALL}")
@@ -93,7 +85,7 @@ def generateToken():
 
 
                         email = "".join(choice("abcdefghijklmnopqrstuvwxyz") for i in range(10))
-                        email += "@blackmanhidingfromaperson.com"
+                        email += "@getthistoolongithub.co"
                         a=random.choice(os.listdir(folder))
                         avatar = folder+'\\'+a
                         imgg = base64.b64encode(open(f"{avatar}", "rb").read()).decode('ascii')
