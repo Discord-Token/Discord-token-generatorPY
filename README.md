@@ -1,3 +1,5 @@
+### ⭐ This repo for a cookie
+
 <div id="top"></div>
 <p align="center">
   <img src="https://img.shields.io/github/contributors/Discord-Token/Discord-token-generatorPY.svg?style=for-the-badge"/>
@@ -23,7 +25,7 @@
     <br />
     <a href="https://github.com/Discord-Token/Discord-token-generatorPY/issues">Report Bug</a>
     ·
-    <a href="https://discord.gg/V46vTVcAYC">Discord server</a>
+    <a href="https://discord.gg/V46vTVcAYC">Discord server>
   </p>
 </div>
   
