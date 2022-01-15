@@ -1,4 +1,5 @@
 import os
+from os import system
 import httpx
 from base64 import b64encode
 from colorama import init, Fore, Style
