@@ -94,7 +94,7 @@ def generateToken():
                         imgg = base64.b64encode(open(f"{avatar}", "rb").read()).decode('ascii')
                         userData = client.patch("https://discord.com/api/v9/users/@me", json={"email": email, "password": password, "date_of_birth": "2000-01-01", "avatar": f"data:image/png;base64,{imgg}"}, timeout=30)
                         if userData.status_code == 403:
-                            with open("Locked_tokens")as shittoken:
+                            with open("Locked_tokens.txt")as shittoken:
                                 shittoken.write(f"{token}\n")
                             failedTokens += 1
                             return generateToken()
