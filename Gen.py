@@ -94,7 +94,7 @@ def generateToken():
                         imgg = base64.b64encode(open(f"{avatar}", "rb").read()).decode('ascii')
                         userData = client.patch("https://discord.com/api/v9/users/@me", json={"email": email, "password": password, "date_of_birth": "2000-01-01", "avatar": f"data:image/png;base64,{imgg}"}, timeout=30)
                         if userData.status_code == 403:
-                            with open("Locked_tokens.txt")as shittoken:
+                            with open("Locked_tokens.txt", "a")as shittoken:
                                 shittoken.write(f"{token}\n")
                             failedTokens += 1
                             return generateToken()
@@ -111,7 +111,7 @@ def generateToken():
 									
                         emailData = client.post("https://discord.com/api/v9/auth/verify", json={"token": emailToken, "captcha_key": None}, timeout=30)
                         if emailData.status_code == 400:
-                            print("email cap, retrying :sex:")
+                            s_print(f"{Fore.RED}{Style.BRIGHT}[-] Captcha on email verify, retrying!")
                             emailData = client.post("https://discord.com/api/v9/auth/verify", json={"token": emailToken, "captcha_key": None}, timeout=30)
                             if emailData.status_code == 400:
                                 failedTokens += 1
@@ -127,9 +127,9 @@ def generateToken():
                         with open("Tokens.txt", "a") as f:
                             f.write(f"{email}:{password}:{emailData.json().get('token')}\n")
                             f.close()
-                        with open("Tokens_unformat.txt", "a") as f:
-                            f.write(f"{emailData.json().get('token')}\n")
-                            f.close()
+                        with open("Tokens_unformat.txt", "a") as g:
+                            g.write(f"{emailData.json().get('token')}\n")
+                            g.close()
                             
     except Exception as e:
         s_print(f"{Fore.YELLOW}{Style.BRIGHT}[-] Error: {e}{Style.RESET_ALL}")
