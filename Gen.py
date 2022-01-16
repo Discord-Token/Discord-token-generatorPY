@@ -15,6 +15,8 @@ init(convert=True)
 folder=r"Data/Avatars"
 captchaApi = "anti-captcha.com" # 2captcha.com anti-captcha.com capmonster.cloud (use anti captcha, other services are patched)
 
+password = "Oxi$tinks"
+
 captchaKey = "KEY"
 genStartTime = time()
 generatedTokens = 0
@@ -90,9 +92,10 @@ def generateToken():
                         a=random.choice(os.listdir(folder))
                         avatar = folder+'\\'+a
                         imgg = base64.b64encode(open(f"{avatar}", "rb").read()).decode('ascii')
-                        userData = client.patch("https://discord.com/api/v9/users/@me", json={"email": email, "password": "OxiIsEpikk!", "date_of_birth": "2000-01-01", "avatar": f"data:image/png;base64,{imgg}"}, timeout=30)
+                        userData = client.patch("https://discord.com/api/v9/users/@me", json={"email": email, "password": password, "date_of_birth": "2000-01-01", "avatar": f"data:image/png;base64,{imgg}"}, timeout=30)
                         if userData.status_code == 403:
-                            
+                            with open("Locked_tokens")as shittoken:
+                                shittoken.write(f"{token}\n")
                             failedTokens += 1
                             return generateToken()
 
@@ -108,9 +111,13 @@ def generateToken():
 									
                         emailData = client.post("https://discord.com/api/v9/auth/verify", json={"token": emailToken, "captcha_key": None}, timeout=30)
                         if emailData.status_code == 400:
-                            print("email cap")
-                            failedTokens += 1
-                            return generateToken()
+                            print("email cap, retrying :sex:")
+                            emailData = client.post("https://discord.com/api/v9/auth/verify", json={"token": emailToken, "captcha_key": None}, timeout=30)
+                            if emailData.status_code == 400:
+                                failedTokens += 1
+                                return generateToken()
+                            else:
+                                pass
 
                         userData = userData.json()
                         s_print(f"{Fore.GREEN}{Style.BRIGHT}[+] Token generated - {emailData.json().get('token')} {Style.RESET_ALL}")
@@ -118,8 +125,12 @@ def generateToken():
                         generatedTokens += 1
 
                         with open("Tokens.txt", "a") as f:
-                            f.write(f"{email}:OxiIsEpikk!:{emailData.json().get('token')}\n")
+                            f.write(f"{email}:{password}:{emailData.json().get('token')}\n")
                             f.close()
+                        with open("Tokens_unformat.txt", "a") as f:
+                            f.write(f"{emailData.json().get('token')}\n")
+                            f.close()
+                            
     except Exception as e:
         s_print(f"{Fore.YELLOW}{Style.BRIGHT}[-] Error: {e}{Style.RESET_ALL}")
         s_print(regReq.text)
@@ -127,7 +138,7 @@ def generateToken():
     generateToken()
 if __name__ == "__main__":
     system("cls")
-    print("Token Generator V1\n")
+    print("Token Generator V1.2\n")
     threadAmount = input(f"{Fore.BLUE}{Style.BRIGHT}[?] Number of threads -> {Style.RESET_ALL}")
     threadAmount = 1 if threadAmount == "" else int(threadAmount)
     system("cls")
