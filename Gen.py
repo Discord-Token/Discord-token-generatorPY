@@ -88,7 +88,7 @@ def generateToken():
 
 
                         email = "".join(choice("abcdefghijklmnopqrstuvwxyz") for i in range(10))
-                        email += "@getthistoolongithub.co"
+                        email += "@OxiHasGithub.com"
                         a=random.choice(os.listdir(folder))
                         avatar = folder+'\\'+a
                         imgg = base64.b64encode(open(f"{avatar}", "rb").read()).decode('ascii')
@@ -102,7 +102,7 @@ def generateToken():
                         emailData = ""
                         ws = websocket.WebSocket();ws.connect('wss://gateway.discord.gg/?v=6&encoding=json');response=ws.recv();event=json.loads(response);auth={'op':2,'d':{'token':token,'capabilities':61,'properties':{'os':'Windows','browser':'Chrome','device':'','system_locale':'en-GB','browser_user_agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36','browser_version':'90.0.4430.212','os_version':'10','referrer':'','referring_domain':'','referrer_current':'','referring_domain_current':'','release_channel':'stable','client_build_number':'85108','client_event_source':'null'},'presence':{'status':'dnd','since':0,'activities':[],'afk':False},'compress':False,'client_state':{'guild_hashes':{},'highest_last_message_id':'0','read_state_version':0,'user_guild_settings_version':-1}}};ws.send(json.dumps(auth));ws.close()
                         while len(emailData) == 0:
-                            emailData = httpx.get("http://45.42.45.172:6969/api/getInbox?email=" + email).text
+                            emailData = httpx.get("http://104.128.232.196:12345/api/getInbox?email=" + email).text
 
                         emailToken = httpx.get("https://click.discord.com/ls/click?upn=" + emailData, headers={"Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8", "Accept-Language": "en-US", "Connection": "keep-alive", "DNT": "1", "Host": "click.discord.com", "Sec-Fetch-Dest": "document", "Sec-Fetch-Mode": "navigate", "Sec-Fetch-Site": "none", "Sec-Fetch-User": "?1", "Upgrade-Insecure-Requests": "1", "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0"}).headers.get("location").split("=")[1]
 
@@ -114,9 +114,12 @@ def generateToken():
                             s_print(f"{Fore.RED}{Style.BRIGHT}[-] Captcha on email verify, retrying!")
                             emailData = client.post("https://discord.com/api/v9/auth/verify", json={"token": emailToken, "captcha_key": None}, timeout=30)
                             if emailData.status_code == 400:
+				with open("Unverified_tokens.txt", "a")as shittoken1:
+					shittoken1.write(f"{token}\n")
                                 failedTokens += 1
                                 return generateToken()
                             else:
+				print(f"Succesfully passed captcha on 2nd try!")
                                 pass
 
                         userData = userData.json()
