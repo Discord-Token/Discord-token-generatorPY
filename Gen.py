@@ -114,12 +114,12 @@ def generateToken():
                             s_print(f"{Fore.RED}{Style.BRIGHT}[-] Captcha on email verify, retrying!")
                             emailData = client.post("https://discord.com/api/v9/auth/verify", json={"token": emailToken, "captcha_key": None}, timeout=30)
                             if emailData.status_code == 400:
-				with open("Unverified_tokens.txt", "a")as shittoken1:
-					shittoken1.write(f"{token}\n")
-                                failedTokens += 1
-                                return generateToken()
+                                with open("Unverified_tokens.txt", "a")as shittoken1:
+                                    shittoken1.write(f"{token}\n")
+                                    failedTokens += 1
+                                    return generateToken()
                             else:
-				print(f"Succesfully passed captcha on 2nd try!")
+                                print(f"Succesfully passed captcha on 2nd try!")
                                 pass
 
                         userData = userData.json()
