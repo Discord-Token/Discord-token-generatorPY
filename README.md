@@ -1,7 +1,7 @@
 ### ⭐ This repo for a cookie
 
 
-### Patched On 1/20/2022, im not planning on releasing the fixed version i have to github
+### Patched On 1/20/2022
 ---------------------------------------
 ### Contact
 https://t.me/oxiLOL
