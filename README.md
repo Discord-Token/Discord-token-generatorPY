@@ -7,7 +7,7 @@
 https://t.me/oxiLOL
 https://t.me/dollarnoob
 
-(telegram group) https://t.me/OxiIsNotGay
+(telegram group) https://t.me/discordmp
 
 
 
